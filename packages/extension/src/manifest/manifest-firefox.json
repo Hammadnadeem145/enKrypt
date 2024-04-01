@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["scripts/background.js"],
+    "persistent": true
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Alt+Shift+E",
+        "mac": "Alt+Shift+E",
+        "chromeos": "Alt+Shift+E",
+        "linux": "Alt+Shift+E"
+      }
+    }
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "assets/img/icons/self16.png",
+      "32": "assets/img/icons/self32.png",
+      "192": "assets/img/icons/self192.png",
+      "512": "assets/img/icons/self512.png"
+    },
+    "default_title": "Self",
+    "default_popup": "action.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["file://*/*", "http://*/*", "https://*/*"],
+      "js": ["scripts/contentscript.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["*://connect.trezor.io/*/popup.html"],
+      "js": ["vendor/trezor-content-script.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "100.0"
+    }
+  }
+}

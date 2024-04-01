@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "action": {
+    "default_icon": {
+      "16": "assets/img/icons/self16.png",
+      "32": "assets/img/icons/self32.png",
+      "192": "assets/img/icons/self192.png",
+      "512": "assets/img/icons/self512.png"
+    },
+    "default_title": "Self Wallet",
+    "default_popup": "action.html"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/inject.js", "scripts/*.js.map"],
+      "use_dynamic_url": false,
+      "matches": ["file://*/*", "http://*/*", "https://*/*"]
+    }
+  ],
+  "minimum_chrome_version": "111",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}
